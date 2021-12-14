@@ -1,0 +1,58 @@
+﻿@using TodoListFoTheDay.Models
+@model List<TodoList>
+
+<h3>СПИСОК ДЕЛ НА ДЕНЬ</h3>
+
+@Html.ActionLink("Добавить запись", "Create", "TodoLists")
+
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>
+                День недели
+            </th>
+            <th>
+                Время
+            </th>
+            <th>
+                Жеские дела
+            </th>
+            <th>
+                Гибкие дела
+            </th>
+            <th>
+                Дата создания записи
+            </th>
+            <th>
+                Действия
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var todoList in Model)
+        {
+            <tr>
+                <td>
+                    @todoList.Weekday
+                </td>
+                <td>
+                    @todoList.Time.ToString("HH:mm")
+                </td>
+                <td>
+                    @todoList.Hard
+                </td>
+                <td>
+                    @todoList.Flex
+                </td>
+                <td>
+                    @todoList.CreateAt.ToString("dd-MM-yyyy")
+                </td>
+                <td>
+                    @Html.ActionLink("Удалить", "Delete", "TodoLists", new { id = todoList.Id }, new { })
+                    @Html.ActionLink("Изменить", "Edit", "TodoLists", new { id = todoList.Id }, new { })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

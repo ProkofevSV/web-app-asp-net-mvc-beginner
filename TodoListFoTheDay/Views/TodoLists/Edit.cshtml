@@ -1,0 +1,10 @@
+﻿@using TodoListFoTheDay.Models
+@model TodoList
+
+@using (Html.BeginForm("Edit", "TodoLists", FormMethod.Post))
+{
+    @Html.ValidationSummary()
+    @Html.EditorForModel()
+        <input type="submit" value="Сохранить" />
+    @Html.ActionLink("Отменить", "Index", "TodoLists")
+}
